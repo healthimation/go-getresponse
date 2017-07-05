@@ -268,10 +268,10 @@ func (g *getResponseClient) DeleteContact(ctx context.Context, ID string, messag
 }
 
 func (g *getResponseClient) parseError(resp []byte) glitch.DataError {
-	errRet := errorResponse{}
+	errRet := ErrorResponse{}
 	err := json.Unmarshal(resp, &errRet)
 	if err != nil {
 		return glitch.NewDataError(err, client.ErrorDecodingError, fmt.Sprintf("Could not unmarshal error response: %s", resp))
 	}
-	return glitch.NewDataError(nil, fmt.Sprintf("%d", errRet.ErrorCode), "Error returned from GetResponse")
+	return glitch.NewDataError(nil, fmt.Sprintf("%d", errRet.ErrorCode), fmt.Sprintf("%s | context: %s", errRet.Message, strings.Join(errRet.Context, ", ")))
 }

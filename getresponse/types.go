@@ -60,6 +60,26 @@ type Contact struct {
 	Scoring           *int64        `json:"scoring,omitempty"`
 }
 
-type errorResponse struct {
-	ErrorCode int `json:"errorCode"`
+/* ErrorResponse holds an API error
+example error:
+{
+  "httpStatus": 400,
+  "code": 1000,
+  "codeDescription": "General error of validation process, more details should be in context section",
+  "message": "Custom field invalid",
+  "moreInfo": "https://apidocs.getresponse.com/en/v3/errors/1000",
+  "context": [
+    "Empty value. ID: y8jnp"
+  ],
+  "uuid": "5a42dd48-7f57-4919-9b32-391e594ce375"
+}
+*/
+type ErrorResponse struct {
+	HTTPStatus      int      `json:"httpStatus"`
+	ErrorCode       int      `json:"code"`
+	CodeDescription string   `json:"codeDescription"`
+	Message         string   `json:"message"`
+	MoreInfo        string   `json:"moreInfo"`
+	Context         []string `json:"context"`
+	UUID            string   `json:"uuid"`
 }

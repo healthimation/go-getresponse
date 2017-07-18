@@ -9,6 +9,10 @@ type createContactRequest struct {
 	IPAddress         *string       `json:"ipAddress,omitempty"`
 }
 
+type updateCustomFieldRequest struct {
+	VustomFieldValues []CustomField `json:"customFieldValues"`
+}
+
 // Campaign holds the representation of a campaign
 type Campaign struct {
 	CampaignID string  `json:"campaignId"` // required

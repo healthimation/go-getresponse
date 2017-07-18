@@ -221,7 +221,8 @@ func (g *getResponseClient) UpdateContactCustomFields(ctx context.Context, ID st
 	h.Set("Content-type", "application/json")
 	h.Set("X-Auth-Token", fmt.Sprintf("api-key %s", g.apiKey))
 
-	body, err := client.ObjectToJSONReader(customFields)
+	bodyObj := updateCustomFieldRequest{customFields}
+	body, err := client.ObjectToJSONReader(bodyObj)
 	if err != nil {
 		return result, err
 	}

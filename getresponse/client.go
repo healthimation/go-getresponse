@@ -14,7 +14,7 @@ import (
 	"github.com/healthimation/go-glitch/glitch"
 )
 
-//Error codes
+// Error codes
 const (
 	ErrorAPI = "ERROR_API"
 
@@ -71,7 +71,7 @@ type getResponseClient struct {
 // NewClient returns a new pushy client
 func NewClient(apiKey string, timeout time.Duration) Client {
 	return &getResponseClient{
-		c:      client.NewBaseClient(findGetResponse, "getresponse", true, timeout),
+		c:      client.NewBaseClient(findGetResponse, "getresponse", true, timeout, http.DefaultTransport),
 		apiKey: apiKey,
 	}
 }
